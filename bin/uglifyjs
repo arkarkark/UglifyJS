@@ -45,6 +45,9 @@ out: while (args.length > 0) {
     var v = args.shift();
     switch (v) {
       case "-b":
+      case "--unique_ids":
+        options.unique_ids = true;
+        break;
       case "--beautify":
         options.codegen_options.beautify = true;
         break;
@@ -296,7 +299,8 @@ function squeeze_it(code) {
                 toplevel     : options.mangle_toplevel,
                 defines      : options.defines,
                 except       : options.reserved_names,
-                no_functions : options.no_mangle_functions
+                no_functions : options.no_mangle_functions,
+                unique_ids   : options.unique_ids
             });
         });
         if (options.squeeze) ast = time_it("squeeze", function(){
